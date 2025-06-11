@@ -6,7 +6,7 @@ async function fetchProdutos(){
     try{
         const resposta = await fetch('https://fakestoreapi.com/products');
         const listaDeProdutos = await resposta.json();
-        console.log(listaDeProdutos);
+        localStorage.setItem("catalogo", JSON.stringify(listaDeProdutos));
         imprimirVetor(listaDeProdutos);
     } catch(error){
         console.error("Erro na api: ", error);
@@ -24,9 +24,36 @@ function imprimirVetor(vetor){
         divProduto.innerHTML = `
         <img src="${element.image}" alt="produto">
         <h2>${element.title}</h2>
-        <button onclick="comprar()">Comprar</button>`;
+        <p>R$ ${element.price.toFixed(2)}</p>
+        <button onclick='comprarPorId(${JSON.stringify(element.id)})'>Comprar</button>`;
         div.appendChild(divProduto);
     });
+}
+
+function comprarPorId(id){
+    let catalogo = JSON.parse(localStorage.getItem("catalogo")) || [];
+    
+    const produto = catalogo.find(p => p.id === id);
+    if (produto){
+        comprar(produto);
+    } else{
+        alert("Produto não encontrado!");
+    }
+}
+
+function comprar(produto){
+    let produtos = JSON.parse(localStorage.getItem("carrinho")) || [];
+
+    const existe = produtos.find(p => p.id === produto.id);
+    if (existe){
+        existe.quantidade += 1;
+    } else{
+        produto.quantidade = 1;
+        produtos.push(produto);
+    }
+
+    localStorage.setItem("carrinho", JSON.stringify(produtos));
+    alert("Produto adicionado ao carrinho!");
 }
 
 fetchProdutos();
