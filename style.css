@@ -1,4 +1,4 @@
-/* Reset básico */
+
 * {
     margin: 0;
     padding: 0;
@@ -11,7 +11,7 @@ body {
     color: #333;
 }
 
-/* Cabeçalho */
+
 header {
     background-color: #9146e7;
     color: white;
@@ -41,7 +41,7 @@ header button:hover {
     background-color: #e6e6e6;
 }
 
-/* Catálogo de produtos */
+
 .catalogo-produtos {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
@@ -49,7 +49,7 @@ header button:hover {
     padding: 2rem;
 }
 
-/* Cartão de produto */
+
 .itemProduto {
     background-color: white;
     border-radius: 8px;
@@ -93,7 +93,7 @@ header button:hover {
     background-color: #7b3bc5;
 }
 
-/* Página do carrinho */
+
 h1, h2 {
     text-align: center;
     margin-top: 1rem;
@@ -148,7 +148,7 @@ h1, h2 {
     background-color: #d32f2f;
 }
 
-/* Total e botão finalizar */
+
 #total {
     font-size: 1.5rem;
     margin-top: 2rem;
@@ -173,7 +173,7 @@ button[onclick="finalizarCompra()"]:hover {
     background-color: #7839c0;
 }
 
-/* Responsivo */
+
 @media (max-width: 600px) {
     header {
         flex-direction: column;
